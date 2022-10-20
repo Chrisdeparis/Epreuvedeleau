@@ -33,7 +33,6 @@ function func1(){
         liste.push((combinaison));
     }
     // on calcule 23
-    let n19 = liste[7];
     // on incrémente les vingtaines
     for(let k=3; k<=4; k++){
         let combinaison = chiffreC[0]+''+chiffreD[2]+''+chiffreU[k];
