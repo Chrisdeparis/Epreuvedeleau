@@ -30,6 +30,7 @@ function func1(){
     liste.push(numerofinal);
     // on incrémente les dizaines 013... 023, 123
     for(let k=3; k<=9; k++){
+        
         // 013... 019
         let combinaison = chiffreC[0]+''+chiffreD[1]+''+chiffreU[k];
         // 023... 029
