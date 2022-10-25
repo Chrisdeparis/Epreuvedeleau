@@ -15,7 +15,6 @@ function func1() {
         return;
     }
     console.log(reverse(args));
-
     
 }
 
