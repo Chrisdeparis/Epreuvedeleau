@@ -24,7 +24,7 @@ for (let i = 0; i < 102; i++) {
     listePremier.push(i);
   }
 }
-//    console.log(listePremier);
+
 //trouver le nombre premier dans un échantillon de 0 à 102 supérieur
 if (0 < args < 102) {
   const goal = args;
@@ -32,10 +32,10 @@ if (0 < args < 102) {
     return Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev;
   });
 
-  listePremier.indexOf(parseInt(closest));
+  listePremier.indexOf(closest);
 
   //element suivant
-  let IndexNextNumber = listePremier.indexOf(parseInt(closest)) + 1;
+  let IndexNextNumber = listePremier.indexOf(closest) + 1;
   let nextNumber = listePremier[IndexNextNumber];
   console.log(nextNumber);
 }
