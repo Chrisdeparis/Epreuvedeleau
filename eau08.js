@@ -17,6 +17,10 @@ let reg = /,/g;
 let arg = args.replace(reg, ' ');
 
 const indexLastWord = (arg) => {
+    if(arg == '' || str == []){
+        console.log('error');
+        return;
+    }
   let split = arg.split(' ');
 
   split.map((word) => {
