@@ -10,7 +10,7 @@ let liste = [];
 let newArr = [];
 
 
-// transformer array en string
+// transformer array en string pour argument
 let str = process.argv.slice(2);
 let args = str.toString();
 let reg = /,/g;
@@ -19,7 +19,7 @@ let arg = args.replace(reg, ' ');
 const indexLastWord = (arg) => {
   let split = arg.split(' ');
 
-  arg.split(' ').map((word) => {
+  split.map((word) => {
     liste.push(word);
   });
   //chaque mot dans un tableau
