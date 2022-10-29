@@ -1,49 +1,27 @@
-// Créez un programme qui affiche le premier index d’un élément recherché dans un tableau. Le tableau est constitué de tous les arguments sauf le dernier. L’élément recherché est le dernier argument. Afficher -1 si l’élément n’est pas trouvé.
+// Créez un programme qui détermine si une chaîne de caractères ne contient que des chiffres.
 // Exemples d’utilisation :
-// $> python exo.py Ceci est le monde qui contient Charlie un homme sympa Charlie
-// 6
-// $> python exo.py test test test
-// 0
-// $> python exo.py test boom
-// -1
-let liste = [];
-let newArr = [];
+// $> python exo.py “4445353”
+// true
+// $> python exo.py 42
+// true
+// $> python exo.py “Bonjour 36”
+// false
+// the match() method retrieves the result of matching a string against a regular expression.
 
-
+// let test = '6654';
 // transformer array en string pour argument
 let str = process.argv.slice(2);
 let args = str.toString();
-let reg = /,/g;
-let arg = args.replace(reg, ' ');
+let regex = /,/g;
+let arg = args.replace(regex, ' ');
+// chiffres uniquement
+let reg = /^\d+$/;
 
-const indexLastWord = (arg) => {
-    if(arg == '' || str == []){
-        console.log('error');
-        return;
-    }
-  let split = arg.split(' ');
-
-  split.map((word) => {
-    liste.push(word);
-  });
-  //chaque mot dans un tableau
-
-  // retirer le dernier
-  let indexLast = liste.length - 1;
-  let lastword = liste[indexLast];
-
-  // parcourir tous les éléments sauf le dernier
-  for (let i = 0; i < indexLast; i++) {
-    newArr.push(liste[i]);
-  }
-  //nouveau tableau sans le dernier élement
-
-  // verif si lastword existe dans newArr
-  if (newArr.indexOf(lastword) === -1) {
-    console.log(-1);
+const checkNumber = (arg) => {
+  if ((typeof arg == 'string' && arg.match(reg)) || typeof arg == 'number') {
+    console.log(true);
   } else {
-    console.log(newArr.indexOf(lastword));
+    console.log(false);
   }
 };
-
-indexLastWord(arg);
+checkNumber(arg);
