@@ -7,7 +7,8 @@
 // 1
 // $> python exo.py -8 -6 4
 // 2
-let args = ['5', '1', '19', '21'];
+let args = process.argv.slice(2);
+console.log(args);
 let liste = [];
 let resultats = [];
 for (let i = 0; i < args.length; i++) {
