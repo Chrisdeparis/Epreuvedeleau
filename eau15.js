@@ -12,15 +12,9 @@ let args = process.argv.slice(2);
 let reg = /,/g;
 let chaine = args.toString();
 let check = reg.test(chaine);
-// console.log(check);
-// console.log(chaine);
-let replace = chaine.replace(reg, ' ');
-// console.log(replace);
-let x = 'm';
+let replace = chaine.replace(reg, " ");
+let x = "m";
 var ascii_code = x.codePointAt(0);
-// console.log(ascii_code);
-// calcul valeur mot en ascii entre chaque espace
-// let str = args[2];
 
 // paramètres reçus
 let str = replace;
@@ -29,12 +23,7 @@ let str = replace;
 let find = /\s/g;
 let verif = find.test(chaine);
 //position
-let pos = replace.indexOf(' ');
-
-// let myString = 'Alfred Momo Gilbert';
-// // nombre d'occurence espace
-// let regex = / /gi;
-// let count = (myString.match(regex) || []).length;
+let pos = replace.indexOf(" ");
 
 // find index position of letter after space
 const findIndex = (str, substr) => {
@@ -47,14 +36,13 @@ const findIndex = (str, substr) => {
   }
   // ajouter index premier mot
   result.splice(0, 0, 0);
-
   if (result) return result;
 };
 
 const valWord = () => {
   let i = 0;
   let total = [];
-  let test = str.split('');
+  let test = str.split("");
   let nb = 0;
   let inLetters = [];
   // calcul valeur première lettre mot
@@ -64,21 +52,20 @@ const valWord = () => {
     total.push(addValue);
   }
 
-
   const decimalToText = (unicodeArray) => {
     let arr = [];
     for (let index in unicodeArray) {
       let text = String.fromCharCode(unicodeArray[index]);
       arr.push(text);
     }
-    return arr.join('');
+    return arr.join("");
   };
 
-  let x = findIndex(str, ' ');
+  let x = findIndex(str, " ");
 
   const sort_let = () => {
     let result = [];
-    let j = findIndex(str, ' ');
+    let j = findIndex(str, " ");
     let taille = x.length;
     for (let i = 0; i < taille; i++) {
       result.push(total[j[i]]);
@@ -96,7 +83,7 @@ const valWord = () => {
 
     const sort_word = () => {
       let newWord = [];
-      let indexWord = findIndex(str, ' ');
+      let indexWord = findIndex(str, " ");
       let nBWords = [];
       // ajouter les index en fonction du nombre d'éléments
       for (let i = 0; i < taille; i++) {
@@ -109,15 +96,14 @@ const valWord = () => {
       let reponse = [];
       reponse.push(newWord[0]);
       //separer les mots
-
-      const usingSplit = newWord[0].split(' ');
+      const usingSplit = newWord[0].split(" ");
       // resultat words
-      console.log(usingSplit.sort().join(' '));
+      console.log(usingSplit.sort().join(" "));
     };
 
     if (containsEvenNums(result)) {
       sort_word();
-      return decimalToText(result.sort()).split('').join(' ');
+      return decimalToText(result.sort()).split("").join(" ");
     } else {
       sort_word();
     }
