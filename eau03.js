@@ -1,21 +1,34 @@
 // Créez un programme qui affiche ses arguments reçus à l’envers.
 
-function reverse(array) {
-    let output = [];
-    while (array.length) {
-      output.push(array.pop());
+function invertArguments(arrayArguments){
+    let result = [];
+    for(let i=arrayArguments.length-1; i>=0; i--){
+      result.push(arrayArguments[i]);
     }
-    return output;
+    return result;
 }
 
-let args = process.argv.slice(2);
-function func1() {
-    if(args == ''){
-        console.log("error");
-        return;
-    }
-    console.log(reverse(args));
-    
+function displayResult(result){
+    result.forEach((item, i) => {
+      console.log(item);
+    });
+  
 }
 
-func1(args);
+const errorMissingArguments = new Error("Erreur d'Arguments");
+
+function isArgumenMissing(args){
+    return(args.length<=0);
+}
+
+const args = process.argv.slice(2);
+let result = [];
+
+if(isArgumenMissing(args)){
+    console.log(errorMissingArguments.message);
+    process.exit();
+} else {
+    result = invertArguments(args);
+}
+
+displayResult(result);
