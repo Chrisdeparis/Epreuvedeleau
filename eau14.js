@@ -59,6 +59,4 @@ let checkDigit = regDigit.test(str);
 
 if (checkDigit === true) {
   console.log(result.join(' '));
-} else {
-
-}
+} 
