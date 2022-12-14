@@ -1,26 +1,40 @@
+// $> python exo.py “bonjour mathilde, comment vas-tu ?!”
+// Bonjour Mathilde, Comment Vas-tu ?!
 
 
-// let string = 'Salut roger tu vas bien et la famille ?';
-// let string = 42;
-// transformer array en string pour argument
-let str = process.argv.slice(2);
-let args = str.toString();
-let reg = /,/g;
-let arg = args.replace(reg, ' ');
+// $> python exo.py 42
+// error
 
-if (typeof arg == 'string') {
-  const UpperWord = (arg) => {
-    return arg
-      .toLowerCase()
-      .split(' ')
-      .map((word) => {
-        return word[0].toUpperCase() + word.substring(1);
-      })
-      .join(' ');
-  };
-  let result = UpperWord(arg);
-  console.log(result);
-} else {
-  console.log('error');
+const capitalize = (s) => {
+  // Check if the input is a string
+  if (typeof s !== "string") {
+    console.error("Error: input must be a string");
+    return;
+  }
+
+  // Split the string into an array of words
+  const words = s.split(/[ \t\n]/);
+
+  // Capitalize the first letter of each word
+  const capitalized = words.map((word) => {
+    const firstLetter = word[0].toUpperCase();
+    const rest = word.slice(1).toLowerCase();
+    return firstLetter + rest;
+  });
+
+  // Join the words back into a single string
+  return capitalized.join(" ");
+};
+
+// Get the input string from the command line arguments
+const args = process.argv.slice(2);
+
+// Check if there is exactly one argument
+if (args.length !== 1) {
+  console.error("Error: exactly one argument is required");
   return;
 }
+
+// Use the function to capitalize the given string
+const result = capitalize(args[0]);
+console.log(result);
