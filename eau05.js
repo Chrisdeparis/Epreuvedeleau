@@ -1,41 +1,28 @@
 // Créez un programme qui affiche le premier nombre premier supérieur au nombre donné en argument.
 
-let args = process.argv.slice(2);
-
-if(args<0 || args == ''){
-    console.log(-1);
-    return;
+// Check if the input is valid
+if (process.argv.length < 3 || isNaN(process.argv[2]) || process.argv[2] < 0) {
+  console.log(-1);
+  return;
 }
 
-function nbPremier(nb) {
-  
-  for (let i = 2; i < nb; i++) {
-    if (nb % i === 0) {
-      return false;
-    }
+// Get the number from the command line argument
+let num = parseInt(process.argv[2]);
+
+// Check if the number is prime
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) return false;
   }
-  return nb > 1;
+  return true;
 }
-// liste de nombre premier de 0 à 102
-let listePremier = [];
-for (let i = 0; i < 102; i++) {
-  if (nbPremier(i)) {
-    // console.log(i);
-    listePremier.push(i);
+
+// Find the first prime number greater than the input number
+while (true) {
+  num++;
+  if (isPrime(num)) {
+    console.log(num);
+    break;
   }
-}
-
-//trouver le nombre premier dans un échantillon de 0 à 102 supérieur
-if (0 < args < 102) {
-  const goal = args;
-  const closest = listePremier.reduce((prev, curr) => {
-    return Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev;
-  });
-
-  listePremier.indexOf(closest);
-
-  //element suivant
-  let IndexNextNumber = listePremier.indexOf(closest) + 1;
-  let nextNumber = listePremier[IndexNextNumber];
-  console.log(nextNumber);
 }
