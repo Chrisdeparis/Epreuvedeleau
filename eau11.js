@@ -6,44 +6,25 @@
 // 0
 // $> python exo.py test boom
 // -1
-let liste = [];
-let newArr = [];
+const args = process.argv.slice(2);
 
+// Check if there are at least two arguments
+if (args.length < 2) {
+  console.error("Error: at least two arguments are required");
+  return;
+}
 
-// transformer array en string pour argument
-let str = process.argv.slice(2);
-let args = str.toString();
-let reg = /,/g;
-let arg = args.replace(reg, ' ');
+// Get the array of elements and the searched element
+const elements = args.slice(0, -1);
+const searched = args[args.length - 1];
 
-const indexLastWord = (arg) => {
-    if(arg == '' || str == []){
-        console.log('error');
-        return;
-    }
-  let split = arg.split(' ');
+// Search for the first occurrence of the searched element in the array
+const index = elements.indexOf(searched);
 
-  split.map((word) => {
-    liste.push(word);
-  });
-  //chaque mot dans un tableau
+// Print the result
+if (index === -1) {
+  console.log(-1);
+} else {
+  console.log(index);
+}
 
-  // retirer le dernier
-  let indexLast = liste.length - 1;
-  let lastword = liste[indexLast];
-
-  // parcourir tous les éléments sauf le dernier
-  for (let i = 0; i < indexLast; i++) {
-    newArr.push(liste[i]);
-  }
-  //nouveau tableau sans le dernier élement
-
-  // verif si lastword existe dans newArr
-  if (newArr.indexOf(lastword) === -1) {
-    console.log(-1);
-  } else {
-    console.log(newArr.indexOf(lastword));
-  }
-};
-
-indexLastWord(arg);
