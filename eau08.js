@@ -5,12 +5,26 @@
 // $> python exo.py 42
 // error
 
+// $> python exo.py “bonjour mathilde, comment vas-tu ?!”
+// Bonjour Mathilde, Comment Vas-tu ?!
+
+
+// $> python exo.py 42
+// error
+
+
 const capitalize = (s) => {
   // Check if the input is a string
   if (typeof s !== "string") {
     console.error("Error: input must be a string");
     return;
   }
+  if (!isNaN(s)) {
+    console.error("Error: input must be a string");
+    return;
+  }
+  
+
 
   // Split the string into an array of words
   const words = s.split(/[ \t\n]/);
@@ -22,6 +36,7 @@ const capitalize = (s) => {
     return firstLetter + rest;
   });
 
+ 
   // Join the words back into a single string
   return capitalized.join(" ");
 };
@@ -35,6 +50,7 @@ if (args.length !== 1) {
   return;
 }
 
-// Use the function to capitalize the given string
-const result = capitalize(args[0]);
+
+ // Use the function to capitalize the given string
+ const result = capitalize(args[0]);
 console.log(result);
