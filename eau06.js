@@ -10,42 +10,20 @@
 // $> python exo.py 42
 // error
 
-function isStringInString(haystack, needle){
-  return haystack.includes(needle);
+
+
+// Check if the input is valid
+if (process.argv.length !== 4) {
+  console.log("error");
+  return;
 }
 
+// Get the strings from the command line arguments
+let str1 = process.argv[2];
+let str2 = process.argv[3];
 
-const errorOnlyTwoArguments = new Error("error argument");
+// Check if str2 is inside str1
+let result = str1.indexOf(str2) !== -1;
 
-function isOnlyTwoArguments(args){
-return(args.length == 2);
-}
-
-/*
-* Return 1 if no errors has been detected, else return error message
-*/
-function checkArgumentForError(args){
-let testResult = 1;
-if(!isOnlyTwoArguments(args)){
-  //1.a if none or more than two argument has been passed
-  testResult = errorOnlyTwoArguments;
-}
-return testResult;
-}
-
-
-let args = process.argv.slice(2);
-let checkResult = checkArgumentForError(args);
-let result = "error";
-
-
-//1. Arguments test
-if(checkResult !== 1){
-result = checkResult.message;
-} else {
-//2. Check if second argument is included in the first argument
-result = isStringInString(args[0], args[1]);
-}
-
-
+// Display the result
 console.log(result);
