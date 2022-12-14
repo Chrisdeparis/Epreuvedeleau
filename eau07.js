@@ -6,18 +6,24 @@
 
 // $> python exo.py 42
 // error
-let args = process.argv.slice(2);
+// Check if the input is valid
+if (process.argv.length !== 3) {
+  console.log("error");
+  return;
+}
 
-console.log(args);
-// if(typeof args == 42 ){
-//   console.log('error');
-//   return;
-// }
-args = args
-  .split('')
-  .map((letter, i) =>
-    i % 2 == 0 ? letter.toUpperCase() : letter.toLowerCase()
-  )
-  .join('');
+// Get the string from the command line argument
+let str = process.argv[2];
 
-console.log(args);
+// Capitalize every other letter in the string
+let result = "";
+for (let i = 0; i < str.length; i++) {
+  let ch = str[i];
+  if (i % 2 === 0 && ch >= "a" && ch <= "z") ch = ch.toUpperCase();
+  else if (i % 2 === 0 && ch >= "A" && ch <= "Z") ch = ch.toLowerCase();
+  result += ch;
+}
+
+// Display the result
+console.log(result);
+
