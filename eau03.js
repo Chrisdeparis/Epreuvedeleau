@@ -1,5 +1,5 @@
 // Créez un programme qui affiche ses arguments reçus à l’envers.
-let args = process.argv.slice(2);
+let arguments = process.argv.slice(2);
 function reverseArgs() {
   // Check if there are any arguments
   if (arguments.length === 0) {
@@ -20,4 +20,4 @@ function reverseArgs() {
   }
 }
 
-reverseArgs(args);
+reverseArgs(arguments);
