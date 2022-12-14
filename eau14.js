@@ -9,44 +9,56 @@
 // 1 2 3 4 5 6
 // $> python exo.py test test test
 // error
-let args = process.argv.slice(2);
-let args2string = args.toString();
-// console.log(args2string.replace(/,/g, ' '));
-let letter = /^[a-zA-Z]+$/;
-let digit = /^\d+$/;
-let verif = digit.test(args2string);
-let check = letter.test(args2string);
-// console.log(verif);
-// console.log(typeof args);
 
-const my_select_sort = (tab) => {
-  for (let i = 0; i < tab.length; i++) {
-    //stocker l'index de l'élément minimum
-    let min = i;
-    for (let j = i + 1; j < tab.length; j++) {
-      if (tab[j] < tab[min]) {
-        // mettre à jour l'index de l'élément minimum
-        min = j;
+const selectSort = (arr) => {
+  // Check if the input is an array
+  if (!Array.isArray(arr)) {
+    console.error("Error: input must be an array");
+    return;
+  }
+
+  // Check if the array contains only numbers
+  if (arr.some(isNaN)) {
+    console.error("Error: input array must contain only numbers");
+    return;
+  }
+
+  // Implement the selection sort algorithm
+  for (let i = 0; i < arr.length - 1; i++) {
+    // Find the minimum element in the unsorted part of the array
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
       }
     }
-    let tmp = tab[i];
-    tab[i] = tab[min];
-    tab[min] = tmp;
+
+    // Swap the minimum element with the first element in the unsorted part of the array
+    const temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
   }
-  return tab;
+
+  // Return the sorted array
+  return arr;
 };
 
-my_select_sort(args);
+// Get the input array from the command line arguments
+const args = process.argv.slice(2);
 
+// Parse the arguments as numbers
+const array = args.map(Number);
 
-// pour testes la regex il faut la transformer en string
+// Use the function to sort the array
+const result = selectSort(array);
+// console.log(result.join(" "));
+
 let str = args.toString();
 let regDigit = /[0-9]+/;
 let checkDigit = regDigit.test(str);
-// console.log(checkDigit);
-// verif condition
+
 if (checkDigit === true) {
-  console.log(args.join(' '));
+  console.log(result.join(' '));
 } else {
-  console.log('error');
+
 }
