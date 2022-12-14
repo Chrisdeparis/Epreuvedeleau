@@ -6,39 +6,31 @@
 // 20 21 22 23 24
 // $> python exo.py hello
 // error
-// let numbers = ['20', '25'];
-let numbers = process.argv.slice(2);
 
-// let str = process.argv.slice(2);
-let args = numbers.toString();
-let reg = /,/g;
-let arg = args.replace(reg, ' ');
-// chiffres uniquement
-let regex = /^[a-zA-Z]+$/;
-// console.log(typeof numbers);
-let liste = [];
+const args = process.argv.slice(2);
 
-if (typeof numbers == 'object' && arg.match(regex)) {
-  console.log('error');
+// Check if there are exactly two arguments
+if (args.length !== 2) {
+  console.error("Error: exactly two arguments are required");
   return;
 }
 
-let max = numbers[0],
-  min = numbers[0];
-for (let i = 0; i < numbers.length; i++) {
-  // If the element is greater
-  // than the max value, replace max
-  if (numbers[i] > max) {
-    max = numbers[i];
-  }
+// Parse the arguments as numbers
+const min = parseInt(args[0]);
+const max = parseInt(args[1]);
 
-  // If the element is lesser
-  // than the min value, replace min
-  if (numbers[i] < min) {
-    min = numbers[i];
-  }
+// Check if the arguments are valid numbers
+if (isNaN(min) || isNaN(max)) {
+  console.error("Error: both arguments must be numbers");
+  return;
 }
 
+
+
+// Print all numbers between min (inclusive) and max (exclusive)
 for (let i = min; i < max; i++) {
+  console.log(i);
+}
+for(let i = max; i < min; i++) {
   console.log(i);
 }
