@@ -9,40 +9,46 @@
 // 1 2 3 4 5 6
 // $> python exo.py test test test
 // error
-let args = process.argv.slice(2);
-// console.log( args);
-// chiffres uniquement
-let reg = /^\d+$/;
-let letter = /^[a-zA-Z]+$/;
-let check = letter.test(args);
-// console.log(check);
-if(typeof args == 'object' || check == true) {
-    console.log('error');
-} else {
+const my_bubbleSort = (arr) => {
+  // Check if the input is an array
+  if (!Array.isArray(arr)) {
+    console.error("Error: input must be an array");
+    return;
+  }
 
-    const bubble_sort = (args) => {
-        let tab = [];
-        // console.log(tab);
-        tab = args;
-        let result = tab;
-        let i = 1;
-        let changed;
-        do {
-          changed = false;
-          for (i = 0; i < tab.length - 1; i++) {
-            if (tab[i] > tab[i + 1]) {
-              let tmp = tab[i];
-              tab[i] = tab[i + 1];
-              tab[i + 1] = tmp;
-              changed = true;
-            }
-          }
-        } while (changed);
-      
-        return result.toString().replace(/,/g, ' ');
-      };
-      
-      console.log(bubble_sort(args));
-      
-}
+  // Check if the array contains only numbers
+  if (arr.some(isNaN)) {
+    console.error("Error: input array must contain only numbers");
+    return;
+  }
+
+  // Implement the bubble sort algorithm
+  let isSorted = false;
+  while (!isSorted) {
+    isSorted = true;
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) {
+        // Swap the two elements
+        const temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+
+        isSorted = false;
+      }
+    }
+  }
+
+  // Return the sorted array
+  return arr;
+};
+
+// Get the input array from the command line arguments
+const args = process.argv.slice(2);
+
+// Parse the arguments as numbers
+const array = args.map(Number);
+
+// Use the function to sort the array
+const result = my_bubbleSort(array);
+console.log(result.join(" "));
 
