@@ -6,22 +6,24 @@
 // true
 // $> python exo.py “Bonjour 36”
 // false
-// the match() method retrieves the result of matching a string against a regular expression.
 
-// let test = '6654';
-// transformer array en string pour argument
-let str = process.argv.slice(2);
-let args = str.toString();
-let regex = /,/g;
-let arg = args.replace(regex, ' ');
-// chiffres uniquement
-let reg = /^\d+$/;
+const args = process.argv.slice(2);
 
-const checkNumber = (arg) => {
-  if ((typeof arg == 'string' && arg.match(reg)) || typeof arg == 'number') {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
-};
-checkNumber(arg);
+// Check if there is exactly one argument
+if (args.length !== 1) {
+  console.error("Error: exactly one argument is required");
+  return;
+}
+
+const s = args[0];
+
+// Check if the input is a string
+if (typeof s !== "string") {
+  console.error("Error: input must be a string");
+  return;
+}
+
+// Use a regular expression to check if the string contains only numbers
+const regex = /^[0-9]+$/;
+const result = regex.test(s);
+console.log(result);
