@@ -1,22 +1,22 @@
 // Créez un programme qui affiche ses arguments reçus à l’envers.
 let arguments = process.argv.slice(2);
-function reverseArgs() {
+function reverseArgs(args) {
   // Check if there are any arguments
-  if (arguments.length === 0) {
+  if (args.length === 0) {
     console.error('No arguments were provided.');
     return;
   }
 
   // Loop through the arguments in reverse order
-  for (let i = arguments.length - 1; i >= 0; i--) {
+  for (let i = args.length - 1; i >= 0; i--) {
     // Check if the argument is a string
-    if (typeof arguments[i] !== 'string') {
-      console.error('Invalid argument: ' + arguments[i]);
+    if (typeof args[i] !== 'string') {
+      console.error('Invalid argument: ' + args[i]);
       return;
     }
 
     // Output the argument
-    console.log(arguments[i]);
+    console.log(args[i]);
   }
 }
 
