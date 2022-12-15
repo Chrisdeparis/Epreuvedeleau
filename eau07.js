@@ -6,24 +6,48 @@
 
 // $> python exo.py 42
 // error
-// Check if the input is valid
-if (process.argv.length !== 3) {
-  console.log("error");
-  return;
+
+function capitalizeAlternatingLetters(string) {
+  // Recherche un nombre
+  let res = string.match(/\d+/);
+  // Affiche le résultat
+  if (res) {
+    console.log("error");
+    return;
+  } else {
+    let result = "";
+    for (let i = 0; i < string.length; i++) {
+      const char = string[i];
+
+      if (/^[a-zA-Z]$/.test(char)) {
+        // Si la lettre est une lettre regex (A-Z, a-z)
+        if (i % 2 === 0) {
+          // Si c'est la deuxième lettre, on la met en majuscule
+          result += char.toUpperCase();
+        } else {
+          // Sinon, on la laisse en minuscule
+          result += char;
+        }
+      } else {
+        // Si ce n'est pas une lettre regex, on la laisse telle quelle
+        result += char;
+      }
+    }
+
+    return result;
+  }
+
+  if (process.argv.length !== 3) {
+    console.log("error");
+    return;
+  }
+  if (/^[a-zA-Z]$/.test(inputString)) {
+    console.error("Error: A string must be provided!");
+    return;
+  }
 }
 
-// Get the string from the command line argument
-let str = process.argv[2];
+const inputString = process.argv[2];
 
-// Capitalize every other letter in the string
-let result = "";
-for (let i = 0; i < str.length; i++) {
-  let ch = str[i];
-  if (i % 2 === 0 && ch >= "a" && ch <= "z") ch = ch.toUpperCase();
-  else if (i % 2 === 0 && ch >= "A" && ch <= "Z") ch = ch.toLowerCase();
-  result += ch;
-}
-
-// Display the result
-console.log(result);
+console.log(capitalizeAlternatingLetters(inputString));
 
