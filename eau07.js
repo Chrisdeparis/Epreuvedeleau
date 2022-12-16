@@ -6,42 +6,19 @@
 // error
 
 
-const capitalize = (s) => {
-  // Check if the input is a string
-  if (typeof s !== "string") {
-    console.error("Error: input must be a string");
-    return;
+function capitalize(s) {
+  if (/^\d+$/.test(s)) {
+    return "error";
+  } else {
+    let result = "";
+    let words = s.split(/\s|\t|\n/);
+    for (let word of words) {
+      result += word[0].toUpperCase() + word.slice(1).toLowerCase() + " ";
+    }
+    return result.trim();
   }
-  if (!isNaN(s)) {
-    console.error("Error: input must be a string");
-    return;
-  }
-
-  // Split the string into an array of words
-  const words = s.split(/[ \t\n]/);
-
-  // Capitalize the first letter of each word
-  const capitalized = words.map((word) => {
-    const firstLetter = word[0].toUpperCase();
-    const rest = word.slice(1).toLowerCase();
-    return firstLetter + rest;
-  });
-
- 
-  // Join the words back into a single string
-  return capitalized.join(" ");
-};
-
-// Get the input string from the command line arguments
-const args = process.argv.slice(2);
-
-// Check if there is exactly one argument
-if (args.length !== 1) {
-  console.error("Error: exactly one argument is required");
-  return;
 }
 
-
- // Use the function to capitalize the given string
- const result = capitalize(args[0]);
-console.log(result);
+// Test the function
+let inputString = process.argv[2];
+console.log(capitalize(inputString));
