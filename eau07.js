@@ -5,13 +5,6 @@
 // $> python exo.py 42
 // error
 
-// $> python exo.py “bonjour mathilde, comment vas-tu ?!”
-// Bonjour Mathilde, Comment Vas-tu ?!
-
-
-// $> python exo.py 42
-// error
-
 
 const capitalize = (s) => {
   // Check if the input is a string
@@ -23,8 +16,6 @@ const capitalize = (s) => {
     console.error("Error: input must be a string");
     return;
   }
-  
-
 
   // Split the string into an array of words
   const words = s.split(/[ \t\n]/);
