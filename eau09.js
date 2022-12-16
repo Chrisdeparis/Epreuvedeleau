@@ -1,29 +1,36 @@
-// Créez un programme qui détermine si une chaîne de caractères ne contient que des chiffres.
+// Créez un programme qui affiche toutes les valeurs comprises entre deux nombres dans l’ordre croissant. Min inclus, max exclus.
 // Exemples d’utilisation :
-// $> python exo.py “4445353”
-// true
-// $> python exo.py 42
-// true
-// $> python exo.py “Bonjour 36”
-// false
+// $> python exo.py 20 25
+// 20 21 22 23 24
+// $> python exo.py 25 20
+// 20 21 22 23 24
+// $> python exo.py hello
+// error
 
 const args = process.argv.slice(2);
 
-// Check if there is exactly one argument
-if (args.length !== 1) {
-  console.error("Error: exactly one argument is required");
+// Check if there are exactly two arguments
+if (args.length !== 2) {
+  console.error("Error: exactly two arguments are required");
   return;
 }
 
-const s = args[0];
+// Parse the arguments as numbers
+const min = parseInt(args[0]);
+const max = parseInt(args[1]);
 
-// Check if the input is a string
-if (typeof s !== "string") {
-  console.error("Error: input must be a string");
+// Check if the arguments are valid numbers
+if (isNaN(min) || isNaN(max)) {
+  console.error("Error: both arguments must be numbers");
   return;
 }
 
-// Use a regular expression to check if the string contains only numbers
-const regex = /^[0-9]+$/;
-const result = regex.test(s);
-console.log(result);
+
+
+// Print all numbers between min (inclusive) and max (exclusive)
+for (let i = min; i < max; i++) {
+  console.log(i);
+}
+for(let i = max; i < min; i++) {
+  console.log(i);
+}

@@ -1,29 +1,53 @@
-// Créez un programme qui détermine si une chaîne de caractère se trouve dans une autre.
+// Créez un programme qui met en majuscule une lettre sur deux d’une chaîne de caractères. Seule les lettres (A-Z, a-z) sont prises en compte.
 
 // Exemples d’utilisation :
-// $> python exo.py bonjour jour
-// true
-
-// $> python exo.py bonjour joure
-// false
+// $> python exo.py “Hello world !”
+// HeLlO wOrLd !
 
 // $> python exo.py 42
 // error
 
+function capitalizeAlternatingLetters(string) {
+  // Recherche un nombre
+  let res = string.match(/\d+/);
+  // Affiche le résultat
+  if (res) {
+    console.log("error");
+    return;
+  } else {
+    let result = "";
+    for (let i = 0; i < string.length; i++) {
+      const char = string[i];
 
+      if (/^[a-zA-Z]$/.test(char)) {
+        // Si la lettre est une lettre regex (A-Z, a-z)
+        if (i % 2 === 0) {
+          // Si c'est la deuxième lettre, on la met en majuscule
+          result += char.toUpperCase();
+        } else {
+          // Sinon, on la laisse en minuscule
+          result += char;
+        }
+      } else {
+        // Si ce n'est pas une lettre regex, on la laisse telle quelle
+        result += char;
+      }
+    }
 
-// Check if the input is valid
-if (process.argv.length !== 4) {
-  console.log("error");
-  return;
+    return result;
+  }
+
+  if (process.argv.length !== 3) {
+    console.log("error");
+    return;
+  }
+  if (/^[a-zA-Z]$/.test(inputString)) {
+    console.error("Error: A string must be provided!");
+    return;
+  }
 }
 
-// Get the strings from the command line arguments
-let str1 = process.argv[2];
-let str2 = process.argv[3];
+const inputString = process.argv[2];
 
-// Check if str2 is inside str1
-let result = str1.indexOf(str2) !== -1;
+console.log(capitalizeAlternatingLetters(inputString));
 
-// Display the result
-console.log(result);

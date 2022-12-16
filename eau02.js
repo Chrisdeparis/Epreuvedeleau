@@ -1,22 +1,23 @@
-// Créez un programme qui affiche toutes les différentes combinaisons de deux nombre entre 00 et 99 dans l’ordre croissant.
-
-function combinations() {
-  // Create an empty array to store the combinations
-  const combos = [];
-
-  // Loop through the numbers 00 to 99 (inclusive)
-  for (let i = 0; i < 100; i++) {
-    for (let j = i + 1; j < 100; j++) {
-      // If the numbers are in ascending order and do not repeat,
-      // add them to the array of combinations
-      if (i < j) {
-        combos.push(`${i.toString().padStart(2, '0')} ${j.toString().padStart(2, '0')}`);
-      }
-    }
+// Créez un programme qui affiche ses arguments reçus à l’envers.
+let arguments = process.argv.slice(2);
+function reverseArgs(args) {
+  // Check if there are any arguments
+  if (args.length === 0) {
+    console.error('No arguments were provided.');
+    return;
   }
 
-  // Return the array of combinations
-  return combos;
+  // Loop through the arguments in reverse order
+  for (let i = args.length - 1; i >= 0; i--) {
+    // Check if the argument is a string
+    if (typeof args[i] !== 'string') {
+      console.error('Invalid argument: ' + args[i]);
+      return;
+    }
+
+    // Output the argument
+    console.log(args[i]);
+  }
 }
 
-console.log(combinations());
+reverseArgs(arguments);

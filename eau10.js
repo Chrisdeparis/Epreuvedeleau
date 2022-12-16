@@ -1,36 +1,30 @@
-// Créez un programme qui affiche toutes les valeurs comprises entre deux nombres dans l’ordre croissant. Min inclus, max exclus.
+// Créez un programme qui affiche le premier index d’un élément recherché dans un tableau. Le tableau est constitué de tous les arguments sauf le dernier. L’élément recherché est le dernier argument. Afficher -1 si l’élément n’est pas trouvé.
 // Exemples d’utilisation :
-// $> python exo.py 20 25
-// 20 21 22 23 24
-// $> python exo.py 25 20
-// 20 21 22 23 24
-// $> python exo.py hello
-// error
-
+// $> python exo.py Ceci est le monde qui contient Charlie un homme sympa Charlie
+// 6
+// $> python exo.py test test test
+// 0
+// $> python exo.py test boom
+// -1
 const args = process.argv.slice(2);
 
-// Check if there are exactly two arguments
-if (args.length !== 2) {
-  console.error("Error: exactly two arguments are required");
+// Check if there are at least two arguments
+if (args.length < 2) {
+  console.error("Error: at least two arguments are required");
   return;
 }
 
-// Parse the arguments as numbers
-const min = parseInt(args[0]);
-const max = parseInt(args[1]);
+// Get the array of elements and the searched element
+const elements = args.slice(0, -1);
+const searched = args[args.length - 1];
 
-// Check if the arguments are valid numbers
-if (isNaN(min) || isNaN(max)) {
-  console.error("Error: both arguments must be numbers");
-  return;
+// Search for the first occurrence of the searched element in the array
+const index = elements.indexOf(searched);
+
+// Print the result
+if (index === -1) {
+  console.log(-1);
+} else {
+  console.log(index);
 }
 
-
-
-// Print all numbers between min (inclusive) and max (exclusive)
-for (let i = min; i < max; i++) {
-  console.log(i);
-}
-for(let i = max; i < min; i++) {
-  console.log(i);
-}

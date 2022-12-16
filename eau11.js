@@ -1,11 +1,13 @@
-// Créez un programme qui affiche le premier index d’un élément recherché dans un tableau. Le tableau est constitué de tous les arguments sauf le dernier. L’élément recherché est le dernier argument. Afficher -1 si l’élément n’est pas trouvé.
+// Différence minimum absolue
+// Créez un programme qui affiche la différence minimum absolue entre deux éléments d’un tableau constitué uniquement de nombres. Nombres négatifs acceptés.
 // Exemples d’utilisation :
-// $> python exo.py Ceci est le monde qui contient Charlie un homme sympa Charlie
-// 6
-// $> python exo.py test test test
-// 0
-// $> python exo.py test boom
-// -1
+// $> python exo.py 5 1 19 21
+// 2
+// $> python exo.py 20 5 1 19 21
+// 1
+// $> python exo.py -8 -6 4
+// 2
+
 const args = process.argv.slice(2);
 
 // Check if there are at least two arguments
@@ -14,17 +16,25 @@ if (args.length < 2) {
   return;
 }
 
-// Get the array of elements and the searched element
-const elements = args.slice(0, -1);
-const searched = args[args.length - 1];
+// Parse the arguments as numbers
+const numbers = args.map(Number);
 
-// Search for the first occurrence of the searched element in the array
-const index = elements.indexOf(searched);
-
-// Print the result
-if (index === -1) {
-  console.log(-1);
-} else {
-  console.log(index);
+// Check if all arguments are valid numbers
+if (numbers.some(isNaN)) {
+  console.error("Error: all arguments must be numbers");
+  return;
 }
 
+// Sort the numbers in ascending order
+numbers.sort((a, b) => a - b);
+
+// Find the minimum difference between two consecutive numbers
+const minDifference = numbers.reduce((prev, curr, i, arr) => {
+  if (i === 0) {
+    return Infinity;
+  }
+  return Math.min(prev, curr - arr[i - 1]);
+}, Infinity);
+
+// Print the result
+console.log(minDifference);

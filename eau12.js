@@ -1,40 +1,54 @@
-// Différence minimum absolue
-// Créez un programme qui affiche la différence minimum absolue entre deux éléments d’un tableau constitué uniquement de nombres. Nombres négatifs acceptés.
+// Créez un programme qui trie une liste de nombres. Votre programme devra implémenter l’algorithme du tri à bulle.
+// Vous utiliserez une fonction de cette forme (selon votre langage) :
+// my_bubble_sort(array) {
+// 	# votre algorithme
+// 	return (new_array)
+// }
 // Exemples d’utilisation :
-// $> python exo.py 5 1 19 21
-// 2
-// $> python exo.py 20 5 1 19 21
-// 1
-// $> python exo.py -8 -6 4
-// 2
+// $> python exo.py 6 5 4 3 2 1
+// 1 2 3 4 5 6
+// $> python exo.py test test test
+// error
+const my_bubbleSort = (arr) => {
+  // Check if the input is an array
+  if (!Array.isArray(arr)) {
+    console.error("Error: input must be an array");
+    return;
+  }
 
+  // Check if the array contains only numbers
+  if (arr.some(isNaN)) {
+    console.error("Error: input array must contain only numbers");
+    return;
+  }
+
+  // Implement the bubble sort algorithm
+  let isSorted = false;
+  while (!isSorted) {
+    isSorted = true;
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) {
+        // Swap the two elements
+        const temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+
+        isSorted = false;
+      }
+    }
+  }
+
+  // Return the sorted array
+  return arr;
+};
+
+// Get the input array from the command line arguments
 const args = process.argv.slice(2);
 
-// Check if there are at least two arguments
-if (args.length < 2) {
-  console.error("Error: at least two arguments are required");
-  return;
-}
-
 // Parse the arguments as numbers
-const numbers = args.map(Number);
+const array = args.map(Number);
 
-// Check if all arguments are valid numbers
-if (numbers.some(isNaN)) {
-  console.error("Error: all arguments must be numbers");
-  return;
-}
+// Use the function to sort the array
+const result = my_bubbleSort(array);
+console.log(result.join(" "));
 
-// Sort the numbers in ascending order
-numbers.sort((a, b) => a - b);
-
-// Find the minimum difference between two consecutive numbers
-const minDifference = numbers.reduce((prev, curr, i, arr) => {
-  if (i === 0) {
-    return Infinity;
-  }
-  return Math.min(prev, curr - arr[i - 1]);
-}, Infinity);
-
-// Print the result
-console.log(minDifference);
