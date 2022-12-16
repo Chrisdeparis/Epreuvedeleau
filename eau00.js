@@ -24,7 +24,7 @@ function combinations(n) {
   }
 
   // Return the array of combinations
-  return combos;
+  return combos.toString();
 }
 
 console.log(combinations(10));
