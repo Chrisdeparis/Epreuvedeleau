@@ -9,46 +9,39 @@
 // 1 2 3 4 5 6
 // $> python exo.py test test test
 // error
-const my_bubbleSort = (arr) => {
-  // Check if the input is an array
-  if (!Array.isArray(arr)) {
-    console.error("Error: input must be an array");
-    return;
+
+let args = process.argv.slice(2);
+
+function myBubbleSort(arr) {
+  // Vérifiez que l'argument est bien un tableau de nombres
+  if (!Array.isArray(arr) || arr.some(isNaN)) {
+    return null;
   }
 
-  // Check if the array contains only numbers
-  if (arr.some(isNaN)) {
-    console.error("Error: input array must contain only numbers");
-    return;
-  }
+  // Implémentation de l'algorithme de tri à bulle
+  let n = arr.length;
+  let temp;
 
-  // Implement the bubble sort algorithm
-  let isSorted = false;
-  while (!isSorted) {
-    isSorted = true;
-    for (let i = 0; i < arr.length - 1; i++) {
+  while (n > 0) {
+    for (let i = 0; i < n - 1; i++) {
       if (arr[i] > arr[i + 1]) {
-        // Swap the two elements
-        const temp = arr[i];
+        temp = arr[i];
         arr[i] = arr[i + 1];
         arr[i + 1] = temp;
-
-        isSorted = false;
       }
     }
+    n--;
   }
 
-  // Return the sorted array
-  return arr;
-};
+  // Retournez le tableau trié
+  return arr.join(' ');
+}
 
-// Get the input array from the command line arguments
-const args = process.argv.slice(2);
 
-// Parse the arguments as numbers
-const array = args.map(Number);
+let result = myBubbleSort(args);
 
-// Use the function to sort the array
-const result = my_bubbleSort(array);
-console.log(result.join(" "));
-
+if (result === null) {
+  console.error("Erreur : veuillez fournir un tableau de nombres");
+} else {
+  console.log(result); // Affiche [1, 2, 3, 4, 5]
+}
